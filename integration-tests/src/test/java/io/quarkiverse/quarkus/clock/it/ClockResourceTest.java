@@ -1,7 +1,7 @@
 package io.quarkiverse.quarkus.clock.it;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,11 +11,11 @@ import io.quarkus.test.junit.QuarkusTest;
 public class ClockResourceTest {
 
     @Test
-    public void testHelloEndpoint() {
+    public void testNowEndpoint() {
         given()
-                .when().get("/clock")
+                .when().get("/clock/now")
                 .then()
                 .statusCode(200)
-                .body(is("Hello clock"));
+                .body(notNullValue());
     }
 }
