@@ -31,6 +31,7 @@ public class ClockProducer {
                             .orElseThrow(() -> new IllegalStateException(
                                     "quarkus.clock.fixed-instant must be set when quarkus.clock.type=fixed"))),
                     ZoneOffset.UTC);
+            case ADJUSTABLE -> new AdjustableClock();
             default -> Clock.systemUTC();
         };
     }
