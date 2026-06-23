@@ -7,20 +7,21 @@ import java.util.Optional;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
-import jakarta.inject.Inject;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @ApplicationScoped
 public class ClockProducer {
 
-    @Inject
-    @ConfigProperty(name = "quarkus.clock.type", defaultValue = "system")
-    ClockType type;
+    private final ClockType type;
+    private final Optional<String> fixedInstant;
 
-    @Inject
-    @ConfigProperty(name = "quarkus.clock.fixed-instant")
-    Optional<String> fixedInstant;
+    ClockProducer(
+            @ConfigProperty(name = "quarkus.clock.type", defaultValue = "system") ClockType type,
+            @ConfigProperty(name = "quarkus.clock.fixed-instant") Optional<String> fixedInstant) {
+        this.type = type;
+        this.fixedInstant = fixedInstant;
+    }
 
     @Produces
     @ApplicationScoped
