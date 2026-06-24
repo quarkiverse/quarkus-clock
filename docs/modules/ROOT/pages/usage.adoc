@@ -1,0 +1,58 @@
+= Using the extension
+
+include::./includes/attributes.adoc[]
+
+== Injecting `Clock`
+
+The extension produces a single application-scoped `java.time.Clock` bean.
+Inject it wherever you need the current time:
+
+[source,java]
+----
+include::{examples-dir}ClockResource.java[]
+----
+
+Use `clock.instant()` (or `clock.millis()`) instead of `Instant.now()` so tests can control time through configuration.
+
+== Fixed clock
+
+Set `quarkus.clock.type=fixed` and provide `quarkus.clock.fixed-instant` as an ISO-8601 instant string.
+Every call to `clock.instant()` returns that fixed value.
+
+See xref:configuration.adoc[Configuration] for details and xref:testing.adoc[Testing] for test-profile examples.
+
+== Adjustable clock
+
+When `quarkus.clock.type=adjustable`, the produced `Clock` is an `AdjustableClock` instance.
+You can move time forward, jump to a specific instant, or reset to the real system time:
+
+[cols="1,2"]
+|===
+|Method |Description
+
+|`fixTo(Instant)`
+|Set the clock to an exact instant
+
+|`forward(Duration)`
+|Advance the clock by a duration
+
+|`travelTo(Instant)`
+|Jump to a specific instant (alias for `fixTo`)
+
+|`reset()`
+|Reset to the current system time
+|===
+
+Because Quarkus may wrap the bean in a CDI client proxy, unwrap it before calling `AdjustableClock` methods:
+
+[source,java]
+----
+import io.quarkiverse.quarkus.clock.AdjustableClock;
+import io.quarkus.arc.ClientProxy;
+
+if (ClientProxy.unwrap(clock) instanceof AdjustableClock adjustable) {
+    adjustable.forward(Duration.ofHours(1));
+}
+----
+
+The integration test module demonstrates this pattern in a JAX-RS resource that exposes `/clock/forward` and `/clock/set` endpoints.

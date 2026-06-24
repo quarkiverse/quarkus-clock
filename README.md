@@ -1,27 +1,73 @@
 # Quarkus Clock
 
-[![Version](https://img.shields.io/maven-central/v/io.quarkiverse.quarkus-clock/quarkus-clock?logo=apache-maven&style=flat-square)](https://central.sonatype.com/artifact/io.quarkiverse.quarkus-clock/quarkus-clock-parent)
+[![Version](https://img.shields.io/maven-central/v/io.quarkiverse.quarkus-clock/quarkus-clock?logo=apache-maven&style=flat-square)](https://central.sonatype.com/artifact/io.quarkiverse.quarkus-clock/quarkus-clock)
+[![License](https://img.shields.io/badge/License-Apache%202.0-yellow.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
+[![Build](https://github.com/quarkiverse/quarkus-clock/actions/workflows/build.yml/badge.svg)](https://github.com/quarkiverse/quarkus-clock/actions/workflows/build.yml)
 
-## Welcome to Quarkiverse!
+A Quarkus extension that provides an injectable `java.time.Clock` for your application.
+Using a CDI-managed clock instead of calling `Instant.now()` directly makes time-dependent logic easier to test and control in development.
 
-Congratulations and thank you for creating a new Quarkus extension project in Quarkiverse!
+Supported clock modes:
 
-Feel free to replace this content with the proper description of your new project and necessary instructions how to use and contribute to it.
-
-You can find the basic info, Quarkiverse policies and conventions in [the Quarkiverse wiki](https://github.com/quarkiverse/quarkiverse/wiki).
-
-In case you are creating a Quarkus extension project for the first time, please follow [Building My First Extension](https://quarkus.io/guides/building-my-first-extension) guide.
-
-Other useful articles related to Quarkus extension development can be found under the [Writing Extensions](https://quarkus.io/guides/#writing-extensions) guide category on the [Quarkus.io](https://quarkus.io) website.
-
-Thanks again, good luck and have fun!
+* `system` (default) — JVM system clock
+* `fixed` — constant instant for deterministic tests
+* `adjustable` — mutable clock you can advance or reset at runtime
 
 ## Documentation
 
-The documentation for this extension should be maintained as part of this repository and it is stored in the `docs/` directory.
+Read the full [Quarkus Clock guide](https://docs.quarkiverse.io/quarkus-clock/dev/).
 
-The layout should follow the [Antora's Standard File and Directory Set](https://docs.antora.org/antora/2.3/standard-directories/).
+## Installation
 
-Once the docs are ready to be published, please open a PR including this repository in the [Quarkiverse Docs Antora playbook](https://github.com/quarkiverse/quarkiverse-docs/blob/main/antora-playbook.yml#L7). See an example [here](https://github.com/quarkiverse/quarkiverse-docs/pull/1)
+### Maven
 
-Your documentation will then be published to the <https://docs.quarkiverse.io/> website.
+```xml
+<dependency>
+    <groupId>io.quarkiverse.quarkus-clock</groupId>
+    <artifactId>quarkus-clock</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
+
+### Gradle
+
+```kotlin
+dependencies {
+    implementation("io.quarkiverse.quarkus-clock:quarkus-clock:0.1.0")
+}
+```
+
+## Usage
+
+```java
+@ApplicationScoped
+public class OrderService {
+
+    @Inject
+    Clock clock;
+
+    public boolean isExpired(Instant deadline) {
+        return clock.instant().isAfter(deadline);
+    }
+}
+```
+
+Configure a fixed clock for tests:
+
+```properties
+%test.quarkus.clock.type=fixed
+%test.quarkus.clock.fixed-instant=2000-01-01T00:00:00Z
+```
+
+See the [documentation](https://docs.quarkiverse.io/quarkus-clock/dev/) for adjustable clocks, configuration reference, and testing patterns.
+
+## Contributing
+
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md) before opening a pull request.
+
+* [Report an issue](https://github.com/quarkiverse/quarkus-clock/issues)
+* [Open a pull request](https://github.com/quarkiverse/quarkus-clock/pulls)
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).

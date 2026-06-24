@@ -2,13 +2,24 @@
 
 include::./includes/attributes.adoc[]
 
-TIP: Describe what the extension does here.
+The Quarkus Clock extension provides an injectable `java.time.Clock` for your application.
+Using a CDI-managed clock instead of calling `Instant.now()` directly makes time-dependent logic easier to test and control in development.
+
+Three clock modes are supported:
+
+* `system` (default) — delegates to the JVM system clock (`Clock.systemUTC()`)
+* `fixed` — always returns the same instant; configure with `quarkus.clock.fixed-instant`
+* `adjustable` — a mutable clock you can advance or reset at runtime (ideal for tests and dev scenarios)
+
+* xref:usage.adoc[Using the extension] — inject `Clock` and work with `AdjustableClock`
+* xref:configuration.adoc[Configuration] — clock types and configuration properties
+* xref:testing.adoc[Testing] — fixed and adjustable clocks in tests
 
 == Installation
 
-If you want to use this extension, you need to add the `io.quarkiverse.quarkus-clock:quarkus-clock` extension first to your build file.
+Add the `io.quarkiverse.quarkus-clock:quarkus-clock` extension to your build file.
 
-For instance, with Maven, add the following dependency to your POM file:
+=== Maven
 
 [source,xml,subs=attributes+]
 ----
@@ -19,9 +30,11 @@ For instance, with Maven, add the following dependency to your POM file:
 </dependency>
 ----
 
-[[extension-configuration-reference]]
-== Extension Configuration Reference
+=== Gradle
 
-TIP: Remove this section if you don't have Quarkus configuration properties in your extension.
-
-include::includes/quarkus-clock.adoc[leveloffset=+1, opts=optional]
+[source,kotlin,subs=attributes+]
+----
+dependencies {
+    implementation("io.quarkiverse.quarkus-clock:quarkus-clock:{project-version}")
+}
+----

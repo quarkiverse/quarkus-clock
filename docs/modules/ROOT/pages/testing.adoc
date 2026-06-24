@@ -1,0 +1,45 @@
+= Testing
+
+include::./includes/attributes.adoc[]
+
+Controlling time in tests avoids flakiness and makes assertions deterministic.
+This extension supports both a globally fixed clock and per-test adjustable clocks.
+
+== Fixed clock with the `%test` profile
+
+The simplest approach is to configure a fixed clock for all tests using the `%test` profile in `src/test/resources/application.properties`:
+
+[source,properties]
+----
+%test.quarkus.clock.type=fixed
+%test.quarkus.clock.fixed-instant=2000-01-01T00:00:00Z
+----
+
+All `@QuarkusTest` classes then see `2000-01-01T00:00:00Z` when calling `clock.instant()`.
+
+You can also set these properties in `src/main/resources/application.properties` with the `%test` prefix when integration tests share the same configuration file.
+
+== Adjustable clock with `@QuarkusTestProfile`
+
+For tests that need to move time during execution, use `quarkus.clock.type=adjustable` via a `QuarkusTestProfile`:
+
+[source,java]
+----
+include::{examples-dir}AdjustableClockTest.java[]
+----
+
+Annotate your test class with `@QuarkusTest` and `@TestProfile(AdjustableClockTest.AdjustableProfile.class)`.
+Inside the test, unwrap the injected `Clock` and call `AdjustableClock` methods to advance or set time before asserting application behavior.
+
+== Choosing a strategy
+
+[cols="1,3"]
+|===
+|Approach |When to use
+
+|Fixed clock (`%test` profile)
+|Most unit and integration tests where a single constant time is enough.
+
+|Adjustable clock (`@TestProfile`)
+|Tests that verify behavior across multiple points in time within one test class.
+|===
