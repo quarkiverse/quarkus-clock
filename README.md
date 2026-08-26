@@ -1,6 +1,6 @@
 # Quarkus Clock
 
-[![Version](https://img.shields.io/maven-central/v/io.quarkiverse.quarkus-clock/quarkus-clock?logo=apache-maven&style=flat-square)](https://central.sonatype.com/artifact/io.quarkiverse.quarkus-clock/quarkus-clock-parent)
+[![Version](https://img.shields.io/maven-central/v/io.quarkiverse.clock/quarkus-clock?logo=apache-maven&style=flat-square)](https://central.sonatype.com/artifact/io.quarkiverse.clock/quarkus-clock-parent)
 
 ## Welcome to Quarkiverse!
 

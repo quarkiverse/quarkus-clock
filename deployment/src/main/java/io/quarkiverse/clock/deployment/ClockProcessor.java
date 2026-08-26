@@ -1,6 +1,6 @@
-package io.quarkiverse.quarkus.clock.deployment;
+package io.quarkiverse.clock.deployment;
 
-import io.quarkiverse.quarkus.clock.ClockProducer;
+import io.quarkiverse.clock.ClockProducer;
 import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
 import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.FeatureBuildItem;

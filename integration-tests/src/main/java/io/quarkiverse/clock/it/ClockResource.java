@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.clock.it;
+package io.quarkiverse.clock.it;
 
 import java.time.Clock;
 import java.time.Duration;
@@ -11,7 +11,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 
-import io.quarkiverse.quarkus.clock.AdjustableClock;
+import io.quarkiverse.clock.AdjustableClock;
 import io.quarkus.arc.ClientProxy;
 
 @Path("/clock")

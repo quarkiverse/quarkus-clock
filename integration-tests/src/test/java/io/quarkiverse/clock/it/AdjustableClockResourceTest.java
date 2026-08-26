@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.clock.it;
+package io.quarkiverse.clock.it;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;

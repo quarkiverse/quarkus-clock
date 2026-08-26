@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.clock.it;
+package io.quarkiverse.clock.it;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
