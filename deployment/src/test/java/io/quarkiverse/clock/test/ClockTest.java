@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.clock.test;
+package io.quarkiverse.clock.test;
 
 import java.time.Clock;
 import java.time.Instant;

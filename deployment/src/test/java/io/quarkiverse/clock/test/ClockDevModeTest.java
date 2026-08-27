@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.clock.test;
+package io.quarkiverse.clock.test;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;

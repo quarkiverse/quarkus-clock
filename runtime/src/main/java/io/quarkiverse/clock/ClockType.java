@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.clock;
+package io.quarkiverse.clock;
 
 /**
  * The type of clock to use.
