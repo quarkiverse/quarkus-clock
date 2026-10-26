@@ -9,6 +9,7 @@
     </parent>
     <artifactId>quarkus-clock-deployment</artifactId>
     <name>Quarkus Clock - Deployment</name>
+    <description>Injectable java.time.Clock with system, fixed, and adjustable implementations for Quarkus.</description>
 
     <dependencies>
         <dependency>

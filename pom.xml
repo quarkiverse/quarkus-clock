@@ -12,6 +12,8 @@
     <version>999-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Quarkus Clock - Parent</name>
+    <description>Injectable java.time.Clock with system, fixed, and adjustable implementations for Quarkus.</description>
+    <url>https://github.com/quarkiverse/quarkus-clock</url>
 
     <modules>
         <module>deployment</module>
