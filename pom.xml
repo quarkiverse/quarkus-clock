@@ -9,7 +9,7 @@
     </parent>
     <groupId>io.quarkiverse.clock</groupId>
     <artifactId>quarkus-clock-parent</artifactId>
-    <version>999-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>pom</packaging>
     <name>Quarkus Clock - Parent</name>
     <description>Injectable java.time.Clock with system, fixed, and adjustable implementations for Quarkus.</description>
@@ -24,7 +24,8 @@
         <connection>scm:git:git@github.com:quarkiverse/quarkus-clock.git</connection>
         <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-clock.git</developerConnection>
         <url>https://github.com/quarkiverse/quarkus-clock</url>
-    </scm>
+      <tag>0.1.0</tag>
+  </scm>
 
     <properties>
         <compiler-plugin.version>3.16.0</compiler-plugin.version>
