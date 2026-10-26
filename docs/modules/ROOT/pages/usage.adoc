@@ -1,0 +1,44 @@
+= Using the extension
+
+include::./includes/attributes.adoc[]
+
+== Inject the clock
+
+Inject `java.time.Clock` anywhere CDI is available:
+
+[source,java]
+----
+include::{examples-dir}/InjectClockExample.java[]
+----
+
+By default (`quarkus.clock.type=system`), the bean is `Clock.systemUTC()`.
+
+== Fixed clock
+
+Pin time to a constant instant with `quarkus.clock.type=fixed` and `quarkus.clock.fixed-instant` (ISO-8601):
+
+[source,properties]
+----
+include::{examples-dir}/application-fixed.properties[]
+----
+
+`quarkus.clock.fixed-instant` is required when the type is `fixed`.
+The zone of the fixed clock is UTC.
+
+== Adjustable clock
+
+Set `quarkus.clock.type=adjustable` to produce an `AdjustableClock`.
+The CDI bean type remains `java.time.Clock`; unwrap it to call mutation methods:
+
+[source,java]
+----
+include::{examples-dir}/AdjustableClockExample.java[]
+----
+
+`AdjustableClock` methods:
+
+* `fixTo(Instant)` / `travelTo(Instant)` — jump to an instant
+* `forward(Duration)` — advance by a duration
+* `reset()` — set the clock back to `Instant.now()`
+
+Use `io.quarkus.arc.ClientProxy.unwrap(clock)` when the injected bean is a client proxy (typical for an `@ApplicationScoped` producer).

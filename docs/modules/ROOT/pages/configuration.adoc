@@ -1,0 +1,22 @@
+= Configuration reference
+
+include::./includes/attributes.adoc[]
+
+Configuration properties use the `quarkus.clock` prefix.
+
+|===
+|Property |Default |Notes
+
+|`quarkus.clock.type`
+|`system`
+|One of `system`, `fixed`, `adjustable`. Enum values are matched case-insensitively.
+
+|`quarkus.clock.fixed-instant`
+|_(empty)_
+|Required when `type=fixed`. Must be a valid ISO-8601 instant (for example `2000-01-01T00:00:00Z`).
+|===
+
+[[extension-configuration-reference]]
+== Extension configuration reference
+
+include::includes/quarkus-clock.adoc[leveloffset=+1, opts=optional]

@@ -1,1 +1,4 @@
 * xref:index.adoc[Getting started]
+* xref:usage.adoc[Using the extension]
+* xref:testing.adoc[Testing]
+* xref:configuration.adoc[Configuration]

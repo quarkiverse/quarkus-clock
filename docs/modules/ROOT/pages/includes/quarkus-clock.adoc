@@ -1,0 +1,53 @@
+[.configuration-legend]
+icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+[.configuration-reference.searchable, cols="80,.^10,.^10"]
+|===
+
+h|[.header-title]##Configuration property##
+h|Type
+h|Default
+
+a|icon:lock[title=Fixed at build time] [[quarkus-clock_quarkus-clock-type]] [.property-path]##link:#quarkus-clock_quarkus-clock-type[`+++quarkus.clock.type+++`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.clock.type+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+The clock implementation to use. Supported values: `system`, `fixed`, `adjustable`.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_CLOCK_TYPE+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_CLOCK_TYPE+++`
+endif::add-copy-button-to-env-var[]
+--
+a|`system`, `fixed`, `adjustable`
+|`+++system+++`
+
+a|icon:lock[title=Fixed at build time] [[quarkus-clock_quarkus-clock-fixed-instant]] [.property-path]##link:#quarkus-clock_quarkus-clock-fixed-instant[`+++quarkus.clock.fixed-instant+++`]##
+ifdef::add-copy-button-to-config-props[]
+config_property_copy_button:+++quarkus.clock.fixed-instant+++[]
+endif::add-copy-button-to-config-props[]
+
+
+[.description]
+--
+The fixed instant to use when `quarkus.clock.type=fixed`. Must be a valid ISO-8601 instant string, e.g. `2000-01-01T00:00:00Z`.
+
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_CLOCK_FIXED_INSTANT+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_CLOCK_FIXED_INSTANT+++`
+endif::add-copy-button-to-env-var[]
+--
+|string
+|
+
+|===
+

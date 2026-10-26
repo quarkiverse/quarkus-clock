@@ -1,0 +1,48 @@
+= Testing
+
+include::./includes/attributes.adoc[]
+
+== Fixed clock with `%test`
+
+The simplest approach is a fixed clock in the test profile:
+
+[source,properties]
+----
+include::{examples-dir}/application-test.properties[]
+----
+
+Every call to `clock.instant()` then returns `2000-01-01T00:00:00Z`.
+
+== Adjustable clock with `@TestProfile`
+
+When a test must move time, override configuration with a `QuarkusTestProfile`:
+
+[source,java]
+----
+import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+
+import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit.QuarkusTestProfile;
+import io.quarkus.test.junit.TestProfile;
+
+@QuarkusTest
+@TestProfile(AdjustableClockTest.AdjustableProfile.class)
+public class AdjustableClockTest {
+
+    public static class AdjustableProfile implements QuarkusTestProfile {
+        @Override
+        public Map<String, String> getConfigOverrides() {
+            return Map.of("quarkus.clock.type", "adjustable");
+        }
+    }
+
+    @Test
+    void timeCanBeMoved() {
+        // Inject Clock, unwrap to AdjustableClock, then forward or travelTo.
+    }
+}
+----
+
+Inject `Clock`, unwrap it to `AdjustableClock`, then call `forward`, `travelTo`, or `fixTo` between assertions.

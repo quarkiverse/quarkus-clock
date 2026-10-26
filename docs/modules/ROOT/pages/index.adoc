@@ -2,13 +2,20 @@
 
 include::./includes/attributes.adoc[]
 
-TIP: Describe what the extension does here.
+Provides an injectable `java.time.Clock` for Quarkus applications.
+Use the system clock in production, a fixed instant for deterministic tests, or an adjustable clock when you need to move time forward in tests and development.
+
+Supported clock types:
+
+* `system` (default) — `Clock.systemUTC()`
+* `fixed` — a constant ISO-8601 instant
+* `adjustable` — an `AdjustableClock` you can advance or travel
 
 == Installation
 
-If you want to use this extension, you need to add the `io.quarkiverse.clock:quarkus-clock` extension first to your build file.
+Add the `io.quarkiverse.clock:quarkus-clock` extension to your build file.
 
-For instance, with Maven, add the following dependency to your POM file:
+With Maven, add the following to your `pom.xml`:
 
 [source,xml,subs=attributes+]
 ----
@@ -19,9 +26,15 @@ For instance, with Maven, add the following dependency to your POM file:
 </dependency>
 ----
 
-[[extension-configuration-reference]]
-== Extension Configuration Reference
+With Gradle, add the following to your `build.gradle`:
 
-TIP: Remove this section if you don't have Quarkus configuration properties in your extension.
+[source,gradle,subs=attributes+]
+----
+implementation("io.quarkiverse.clock:quarkus-clock:{project-version}")
+----
 
-include::includes/quarkus-clock.adoc[leveloffset=+1, opts=optional]
+== Next steps
+
+* xref:usage.adoc[Using the extension] — inject `Clock` and choose a clock type
+* xref:testing.adoc[Testing] — fixed and adjustable clocks in tests
+* xref:configuration.adoc[Configuration reference]

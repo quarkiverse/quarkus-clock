@@ -1,27 +1,43 @@
 # Quarkus Clock
 
 [![Version](https://img.shields.io/maven-central/v/io.quarkiverse.clock/quarkus-clock?logo=apache-maven&style=flat-square)](https://central.sonatype.com/artifact/io.quarkiverse.clock/quarkus-clock-parent)
+[![Build](https://github.com/quarkiverse/quarkus-clock/actions/workflows/build.yml/badge.svg)](https://github.com/quarkiverse/quarkus-clock/actions/workflows/build.yml)
 
-## Welcome to Quarkiverse!
+Injectable `java.time.Clock` for Quarkus applications: the system clock by default, a fixed instant for deterministic tests, or an adjustable clock you can move in tests and development.
 
-Congratulations and thank you for creating a new Quarkus extension project in Quarkiverse!
+## Installation
 
-Feel free to replace this content with the proper description of your new project and necessary instructions how to use and contribute to it.
+Maven:
 
-You can find the basic info, Quarkiverse policies and conventions in [the Quarkiverse wiki](https://github.com/quarkiverse/quarkiverse/wiki).
+```xml
+<dependency>
+    <groupId>io.quarkiverse.clock</groupId>
+    <artifactId>quarkus-clock</artifactId>
+    <version>${quarkus-clock.version}</version>
+</dependency>
+```
 
-In case you are creating a Quarkus extension project for the first time, please follow [Building My First Extension](https://quarkus.io/guides/building-my-first-extension) guide.
+Gradle:
 
-Other useful articles related to Quarkus extension development can be found under the [Writing Extensions](https://quarkus.io/guides/#writing-extensions) guide category on the [Quarkus.io](https://quarkus.io) website.
-
-Thanks again, good luck and have fun!
+```groovy
+implementation("io.quarkiverse.clock:quarkus-clock:${quarkusClockVersion}")
+```
 
 ## Documentation
 
-The documentation for this extension should be maintained as part of this repository and it is stored in the `docs/` directory.
+User guide (Antora): see the `docs/` directory.
+Once this repository is registered in [quarkiverse-docs](https://github.com/quarkiverse/quarkiverse-docs), the guide is published at <https://docs.quarkiverse.io/quarkus-clock/dev/>.
 
-The layout should follow the [Antora's Standard File and Directory Set](https://docs.antora.org/antora/2.3/standard-directories/).
+## Contributing
 
-Once the docs are ready to be published, please open a PR including this repository in the [Quarkiverse Docs Antora playbook](https://github.com/quarkiverse/quarkiverse-docs/blob/main/antora-playbook.yml#L7). See an example [here](https://github.com/quarkiverse/quarkiverse-docs/pull/1)
+See the [Quarkiverse wiki](https://github.com/quarkiverse/quarkiverse/wiki) and [Quarkus CONTRIBUTING](https://github.com/quarkusio/quarkus/blob/main/CONTRIBUTING.md) for code style and workflow.
 
-Your documentation will then be published to the <https://docs.quarkiverse.io/> website.
+Build with format validation, the same way the Build workflow does:
+
+```bash
+mvn -B clean install -Dno-format
+```
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE).
