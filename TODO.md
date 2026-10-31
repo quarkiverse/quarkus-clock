@@ -255,9 +255,19 @@ Formatter files: `eclipse-format.xml` and `eclipse.importorder` from `io.quarkus
 
 ## Features roadmap (next milestones)
 
-Next feature milestones, as proposed in [quarkusio/quarkus#54692](https://github.com/quarkusio/quarkus/issues/54692).
+Next feature milestones, mirroring the [unified-clock](https://github.com/asakaxgit/unified-clock) (Node/TypeScript port) roadmap where it applies to the Java side, plus the plans proposed in [quarkusio/quarkus#54692](https://github.com/quarkusio/quarkus/issues/54692).
+JavaScript-only items from that roadmap are intentionally skipped: timers/scheduler (0.3.0), Temporal `Instant` output and framework recipes (0.4.0).
 
-### NTP-synced clocks
+### 0.2.0 — More clock types and a test helper
+
+- [ ] Offset clock as a new `quarkus.clock.type` value (backed by `Clock.offset`), e.g. `quarkus.clock.offset=PT5M`
+- [ ] Ticking clock as a new `quarkus.clock.type` value (backed by `Clock.tick`), e.g. `quarkus.clock.tick=PT1S`
+- [ ] `withClock`-style test helper for Quarkus tests: run a block (or a test) against a given clock and restore the previous one afterwards
+- [ ] Config reference, usage page and tests for the new types
+
+### 0.5.0 — External clock sources
+
+#### NTP-synced clocks
 
 - [ ] NTP-backed `Clock` that applies a measured offset to the local clock and resyncs periodically
 - [ ] Configurable server pools (e.g. `quarkus.clock.ntp.servers`)
@@ -265,11 +275,16 @@ Next feature milestones, as proposed in [quarkusio/quarkus#54692](https://github
 - [ ] Offset averaging across samples and servers to reduce jitter
 - [ ] Config reference, usage page and tests for the NTP mode
 
-### PTP mode
+#### PTP mode
 
 - [ ] PTP clock with nanosecond precision via `clock_gettime` using Java's FFM API
 - [ ] Aimed at MiFID II and IEEE 1588 compliance
 - [ ] Document platform requirements (Linux PTP hardware clock, JDK with FFM) and fallback behaviour
+
+#### Accuracy metadata
+
+- [ ] Expose accuracy metadata for synced clocks (e.g. last sync time / age, estimated error bound, source and stratum)
+- [ ] If both quarkus-clock and unified-clock ship it, use the same shape (field names and units) in both
 
 ### Dev UI
 
